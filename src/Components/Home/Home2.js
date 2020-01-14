@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useMemo, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { getAllPosts } from "../../reducks/reducers/postsReducer";
 import PostCard from '../PostCard/PostCard';
 import Axios from 'axios';
+
+
+
+
 
 class Home extends Component {
   constructor() {
@@ -11,30 +15,33 @@ class Home extends Component {
       randomPost: 1
 
     }
-    
-     } 
+
+ 
+    function shuffle(a) {
+      for (let i = this.props.posts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+      console.log(a)
+    }
+ 
+    const myArray = this.props.posts;
+
+  }
 
   componentDidMount() {
     this.props.getAllPosts();
   }
 
-  randomize(){
-    let a = Math.floor(Math.random() * this.props.posts.length) 
-    this.setState({ randomPost: a})
-    console.log(this.state.randomPost, a)
-}
-
   render() {
     console.log(this.props.posts)
     
     const { posts } = this.props;
-    const postsCopy = posts.slice(this.state.randomPost, this.state.randomPost+1)
-  
-    const postsMapped = postsCopy.map((post, i) => {
+    const postsMapped = posts.map((post, i) => {
       return (
         <div key={i}>
-          <PostCard user={post.user_id} url={post.img_url} pet_name={post.pet_name} 
-          category_name={post.category_name} post_id={post.post_id} username={post.username} />
+          <PostCard user={post.user_id} img_url={post.img_url} pet_name={post.pet_name} category_name={post.category_name} post_id={post.post_id} username={post.username} />
         </div>
       )
     })
@@ -42,8 +49,8 @@ class Home extends Component {
       <div>
         <h1>Home App</h1>
         <button onClick={() => Axios.get("/auth/logout")}>LogOut</button>
-        <button onClick ={this.randomize.bind(this)}>Randomize</button>
-        {postsMapped}
+        <button>Randomize</button>
+        {posts[1]}
       </div>
     )
   }

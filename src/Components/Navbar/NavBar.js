@@ -21,8 +21,8 @@ export default class Header extends React.Component {
         return (
             <header>
                 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,400i,900|Roboto+Slab&display=swap" rel="stylesheet"></link>
-                <h2 className = "site_name" class ="site_name">Rate That Pet</h2>
-                <ul id='site-nav' class ='site-nav'>
+                <h2 className = "site_name">Rate That Pet</h2>
+                <ul id='site-nav'>
                     <li className='menu-text'>Home</li>
                     <li className='menu-text'>About</li>
                     <li className='menu-text'>Contact</li>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ScrollContainer.css'
 
-// import Register from "../Register/Register";
+
 
 class Viewer extends Component {
   constructor() {

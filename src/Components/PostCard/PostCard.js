@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import EditPost from "../EditPost/EditPost";
+import Axios from 'axios'
+import StarRating from 'react-star-rating';
+// import EditPost from "../EditPost/EditPost";
 import { connect } from 'react-redux';
 import { getSession } from '../../reducks/reducers/authReducer';
+
 
 class PostCard extends Component {
   constructor() {
@@ -15,28 +18,27 @@ class PostCard extends Component {
     this.setState({ editPost: true })
   }
 
-  
 
   render() {
     return (
-      <div>
+     
+      <div> 
+        <h4>This is the PostCard</h4>
+      
         <ul>
-          <li>Username: {this.props.username}</li>
-          <li>Date: {this.props.date_published}</li>
-          <li>Title: {this.props.title}</li>
-          <li>Content: {this.props.content}</li>
+          <li>post ID: {this.props.post_id}</li>
+          <li>owner ID: {this.props.user}</li>
+          <li>owner username: {this.props.username}</li>
+          <li>category: {this.props.category_name}</li>
+          <li>pet name: {this.props.pet_name}</li>
+          <img src={this.props.url} alt="pet"></img>
+  
         </ul>
-        {this.props.user === this.props.user_id ?
-
-          <div>
-
-            {
-
-            }
-          </div>
-          : null}
+        
       </div>
+       
     )
+   
   }
 }
 

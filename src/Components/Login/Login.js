@@ -19,7 +19,7 @@ class Login extends Component {
   handleLogin = () => {
     const { loginUser } = this.props;
     const { username, password } = this.state;
-
+console.log(this.props.user_id, username, password)
     loginUser({ username, password })
   }
 
@@ -29,7 +29,7 @@ class Login extends Component {
       return <Redirect to="/home" />
     }
 
-    console.log(this.props.user_id)
+    
     
     return (
       <div>

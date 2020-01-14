@@ -28,7 +28,7 @@ async function editPost(req, res) {
     pet_name,
     img_url,
     post_id,
-    user_id
+    user_id,
   ])
   console.log(editedPost)
   res.status(200).json(editedPost);

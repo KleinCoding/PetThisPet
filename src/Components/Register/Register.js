@@ -7,8 +7,6 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      first_name: "",
-      last_name: "",
       username: "",
       password: ""
     }
@@ -20,15 +18,13 @@ class Register extends Component {
 
   handleRegister = () => {
     const { registerUser } = this.props;
-    const { first_name, last_name, username, password } = this.state;
-    registerUser({first_name, last_name, username, password})
+    const { username, password } = this.state;
+    registerUser({username, password})
   }
 
   render() {
     return (
       <div>
-        <input name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.handleChange} />
-        <input name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.handleChange} />
         <input name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
         <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
         <button onClick={this.handleRegister}>Register</button>

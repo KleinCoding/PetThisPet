@@ -2,9 +2,11 @@ const bcrypt = require("bcryptjs")
 
 async function user(req, res) {
   if (req.session.user) {
+    console.log(req.session.user)
     res.status(200).json(req.session.user)
   }
   else {
+    console.log(req.session.user)
     res.status(401).json("No user logged in")
   }
 }
