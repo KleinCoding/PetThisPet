@@ -28,7 +28,7 @@ export default class Header extends React.Component {
                     <li className='menu-text'>Contact</li>
                     <li className='menu-text'>Donate!</li>
                     <li>
-                        <img
+                        <img className ="MenuIcon"
                             onClick={this.handleClick}
                             src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png"
                             alt='Menu icon'

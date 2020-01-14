@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios'
-import StarRating from 'react-star-rating';
-// import EditPost from "../EditPost/EditPost";
 import { connect } from 'react-redux';
 import { getSession } from '../../reducks/reducers/authReducer';
 
@@ -31,7 +28,7 @@ class PostCard extends Component {
           <li>owner username: {this.props.username}</li>
           <li>category: {this.props.category_name}</li>
           <li>pet name: {this.props.pet_name}</li>
-          <img src={this.props.url} alt="pet"></img>
+          <img className ="postcardimg" src={this.props.url} alt="pet"></img>
   
         </ul>
         
