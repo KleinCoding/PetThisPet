@@ -5,7 +5,7 @@ header {
     display: flex ;
     justify-content: space-around;
     height: 60px;
-    /* border: dashed red; */
+    border: dashed red;
     width: 100vw;
     position: fixed;
     /* margin-left: -45vw; */
@@ -42,13 +42,7 @@ header {
 
 }
 
-/* .class {
-    font-size: 40px;
-    font-style: italic;
-    line-height: 40px;
-    margin-bottom: 25px;
-    color: yellow 
-} */
+
 
 .site-nav{
     align-items: center;
@@ -121,14 +115,14 @@ header {
         background-color: rgb(33,37, 41)
     }
     img {
-        display: block;
+        /* display: block; */
         transition: width 1s, height 1s;
     }
 
-    img:hover {
+    /* img:hover {
         width: 75px;
         height: 75px;
-    }
+    } */
 
     .menu-text {
         display: none;

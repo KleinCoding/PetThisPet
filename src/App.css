@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  border: red dashed
 }
 
 li {
@@ -11,4 +12,63 @@ li {
   height: 10vh;
   background-color: purple;
   color: white;
+}
+
+.HomeContainer{
+  border: dashed blue;
+  display: flex;
+  justify-content: center;
+  widows: 100%;
+  height: auto;
+  text-align: center;
+  /* justify-content: space-around; */
+}
+
+.PostCard{
+  border: dashed purple;
+  width: 50%;
+  display: inline-block;
+  justify-content: center;
+  
+
+}
+
+
+.StarButtonsCard{
+  border: orange dashed;
+  align-self: center;
+  width: 15vw;
+  /* display: inherit; */
+  display: inline-block
+}
+
+.ImageViewer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  border: dashed red;
+}
+
+.ScrollBox {
+  grid-area: 2 / 2 / 9 / 5;
+  border: dashed blue;
+}
+
+.WelcomeText {
+  grid-area: 1 / 2 / 2 / 5;
+}
+
+.postcardimg {
+  max-width: 100%;
+  width: 100%;
+  height: auto !important;
+}
+@media (max-width: 950px) {
+ 
+  .postcardimg {
+      display: block;
+      transition: width 50rem, height 50rem;
+  }
 }

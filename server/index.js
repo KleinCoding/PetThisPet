@@ -6,6 +6,7 @@ const app = express();
 // Controllers
 const ac = require("./controllers/authController")
 const pc = require("./controllers/postsController")
+const rc = require("./controllers/ratingsController")
 // Dotenv
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 // Middleware
@@ -30,6 +31,7 @@ massive(CONNECTION_STRING).then(db => {
 
 // De-structured controllers
 const { user, registerUser, loginUser, logoutUser } = ac;
+const { allRatings, addRating, editRating, allRatingsByUserId} = rc
 const { allPosts, addPost, editPost, deletePost, allPostsByCategoryName, postsById } = pc;
 // Auth Endpoints
 app.get("/auth/user", user); //Works
@@ -45,6 +47,11 @@ app.post("/api/posts",  addPost); //Works
 app.put("/api/posts/:post_id",  editPost); //Works, allows edit img url and pet name
 app.delete("/api/posts/:post_id",  deletePost); //Works
 
+// Ratings Endpoints
+app.get("/api/ratings",  allRatings);  //Works
+app.get("/api/ratings/:user_id",  allRatingsByUserId) //Works
+app.post("/api/ratings/:post_id",  addRating); //Works, but will allow user to rate multiple times
+app.put("/api/ratings/:post_id",  editRating) //Works
 
 app.listen(SERVER_PORT, () => {
   console.log(`LOFI RADIO STATION #: ${SERVER_PORT}`)

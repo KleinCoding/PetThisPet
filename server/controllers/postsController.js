@@ -6,13 +6,13 @@ async function allPosts(req, res) {
 }
 
 async function addPost(req, res) {
-  const { category_name, pet_name, img_url, img_rating} = req.body;
+  const { category_name, pet_name, img_url} = req.body;
   const user_id = req.session.user.user_id;
-  // const img_rating = 0;
+  
 
   const db = req.app.get("db");
 
-  const addedPost = await db.posts.addPost([category_name, pet_name, img_url, user_id, img_rating]);
+  const addedPost = await db.posts.addPost([category_name, pet_name, img_url, user_id]);
   console.log(addedPost)
   res.status(200).json(addedPost);
 }
