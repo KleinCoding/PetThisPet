@@ -10,7 +10,7 @@ class PostCard extends Component {
     super();
     this.state = {
       editPost: false,
-      voteRating: null,
+      initialValue: null,
     }
   }
 
@@ -58,7 +58,8 @@ componentDidMount(){
 
 const mapStateToProps = reduxState => {
   return {
-    user_id: reduxState.authReducer.user_id
+    user_id: reduxState.authReducer.user_id,
+    post_id: reduxState.postsReducer.post_id
   }
 }
 

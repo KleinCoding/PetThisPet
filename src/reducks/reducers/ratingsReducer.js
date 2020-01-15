@@ -1,14 +1,15 @@
 import Axios from "axios";
 
 const initialState = {
-  posts: [],
+  ratings: [],
+  ratingsUser: [],
   loading: false
 }
 
 const GET_ALL_RATINGS = "GET_ALL_RATINGS";
 const ADD_RATING = "ADD_RATING";
 const EDIT_RATING = "EDIT_RATING";
-const GET_ALL_RATINGS_BY_USER_ID = "GET_ALL_RATINGS_BY_CATEGORY_NAME";
+const GET_ALL_RATINGS_BY_USER_ID = "GET_ALL_RATINGS_BY_USER_ID";
 
 export function getAllRatings() {
   return {
@@ -52,9 +53,23 @@ export default function reducer(state = initialState, action) {
     case `${GET_ALL_RATINGS}_FULFILLED`: {
       return {
         ...state,
-        posts: payload.data
+        ratings: payload.data
       }
     }
+    
+    case `${GET_ALL_RATINGS_BY_USER_ID}_PENDING`: {
+        return {
+          ...state,
+          loading: true
+        }
+      }
+      case `${GET_ALL_RATINGS_BY_USER_ID}_FULFILLED`: {
+        return {
+          ...state,
+          ratingsUser: payload.data
+        }
+      }
+
     case `${ADD_RATING}_PENDING`: {
       return {
         ...state,
@@ -64,7 +79,7 @@ export default function reducer(state = initialState, action) {
     case `${ADD_RATING}_FULFILLED`: {
       return {
         ...state,
-        posts: payload.data
+        ratings: payload.data
       }
     }
     case `${EDIT_RATING}_PENDING`: {
@@ -76,7 +91,7 @@ export default function reducer(state = initialState, action) {
     case `${EDIT_RATING}_FULFILLED`: {
       return {
         ...state,
-        posts: payload.data,
+        ratings: payload.data,
         loading: false
       }
     }

@@ -2,7 +2,8 @@ import Axios from "axios";
 
 const initialState = {
   posts: [],
-  loading: false
+  loading: false,
+  post_id: null
 }
 
 const GET_ALL_POSTS = "GET_ALL_POSTS";

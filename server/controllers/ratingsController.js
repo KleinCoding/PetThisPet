@@ -37,9 +37,9 @@ async function allRatings(req, res) {
     const user_id= req.session.user.user_id
     const db = req.app.get("db");
   
-    const ratings = await db.ratings.getAllRatingsForUser(user_id)
-  console.log(user_id)
-    res.status(200).json(ratings);
+    const ratingsUser = await db.ratings.getAllRatingsForUser(user_id)
+  console.log(user_id,"Ratings Controller allRatingsByUserId")
+    res.status(200).json(ratingsUser);
   }
   
 
