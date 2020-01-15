@@ -18,10 +18,10 @@ export function getAllRatings() {
   }
 }
 
-export function addRating(rating) {
+export function addRating(post_id, rating) {
   return {
     type: ADD_RATING,
-    payload: Axios.post("/api/ratings", rating)
+    payload: Axios.post(`/api/ratings/${post_id}`, {rating})
   }
 }
 

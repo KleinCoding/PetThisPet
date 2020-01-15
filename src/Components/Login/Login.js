@@ -25,9 +25,9 @@ console.log(this.props.user_id, username, password)
 
   render() {
 
-    if (this.props.user_id) {
-      return <Redirect to="/home" />
-    }
+    // if (this.props.user_id) {
+    //   return <Redirect to="/home" />
+    // }
 
     
     

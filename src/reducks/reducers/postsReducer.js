@@ -3,10 +3,11 @@ import Axios from "axios";
 const initialState = {
   posts: [],
   loading: false,
-  post_id: null
+  currentPost_id: 0
 }
 
 const GET_ALL_POSTS = "GET_ALL_POSTS";
+const GET_CURRENT_POST = "GET_CURRENT_POST"
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
@@ -25,7 +26,12 @@ export function addPost(post) {
     payload: Axios.post("/api/posts", post)
   }
 }
-
+export function getCurrentPost(post_id) {
+  return{
+  type: GET_CURRENT_POST,
+  payload: Axios.get(`/api/post/${post_id}`)
+  }
+}
 export function editPost(post_id, updated_post) {
   return {
     type: EDIT_POST,
@@ -61,6 +67,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         posts: payload.data
+      }
+    }
+    case `${GET_CURRENT_POST}_PENDING`: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case `${GET_CURRENT_POST}_FULFILLED`: {
+      return {
+        ...state,
+        currentPost_id: payload.data
       }
     }
     case `${ADD_POST}_PENDING`: {

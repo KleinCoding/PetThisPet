@@ -11,9 +11,10 @@ async function allRatings(req, res) {
     const {rating} = req.body;
   
     const db = req.app.get("db");
-  
+    console.log(req.body)
+    console.log("firing in ratingsController - addRating: post_id, user_id, {rating}", post_id, user_id, rating)
     const addedRating = await db.ratings.addRating([post_id, user_id, rating]);
-    console.log(addedRating)
+    console.log("Adding Rating", addedRating)
     res.status(200).json(addedRating);
   }
   

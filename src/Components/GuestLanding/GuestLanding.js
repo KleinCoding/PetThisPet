@@ -13,7 +13,7 @@ class GuestLanding extends Component {
   render() {
     return (
       <div>
-      <h1>Welcome to DevNotes</h1>
+      <h1>Welcome to PawVotes!</h1>
       New User? Please register below!
       <Register />
       Welcome Back!

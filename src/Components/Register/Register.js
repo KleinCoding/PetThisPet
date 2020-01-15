@@ -25,8 +25,8 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <input name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
-        <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+        <input name="usernameRegister" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
+        <input name="passwordRegister" type="Password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
         <button onClick={this.handleRegister}>Register</button>
       </div>
     )

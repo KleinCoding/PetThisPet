@@ -1,4 +1,5 @@
 import React from 'react'
+import {HashRouter, Link} from 'react-router-dom'
 import './NavBar.css';
 
 export default class Header extends React.Component {
@@ -19,14 +20,15 @@ export default class Header extends React.Component {
 
     render() {
         return (
+            <HashRouter>
             <header>
                 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,400i,900|Roboto+Slab&display=swap" rel="stylesheet"></link>
                 <h2 className = "site_name">Rate That Pet</h2>
                 <ul id='site-nav'>
-                    <li className='menu-text'>Home</li>
-                    <li className='menu-text'>About</li>
-                    <li className='menu-text'>Contact</li>
-                    <li className='menu-text'>Donate!</li>
+                    <li className='menu-text'><Link to='/Home'>Home</Link></li>
+                    <li className='menu-text'><Link to='/Landing'>Landing</Link></li>
+                    <li className='menu-text'><Link to='/'>App</Link></li>
+                    <li className='menu-text'><Link to='/Container'>Scroll Container</Link></li>
                     <li>
                         <img className ="MenuIcon"
                             onClick={this.handleClick}
@@ -43,6 +45,7 @@ export default class Header extends React.Component {
                 </ul>
                 <div></div>
             </header>
+            </HashRouter>
         )
     }
 }

@@ -48,7 +48,7 @@ async function postsById(req, res) {
   const db = req.app.get("db");
 
   const posts = await db.posts.getPostsById(post_id)
-console.log(post_id)
+console.log("postController, getting post by ID",post_id)
   res.status(200).json(posts);
 }
 

@@ -5,7 +5,7 @@ import NavBar from './Components/Navbar/NavBar'
 // import ScrollContainer from './Components/ScrollContainer/ScrollContainer'
 import routes from './routes.js'
 import './App.css';
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 
 
 
