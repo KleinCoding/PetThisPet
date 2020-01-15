@@ -19,16 +19,13 @@ class Login extends Component {
   handleLogin = () => {
     const { loginUser } = this.props;
     const { username, password } = this.state;
-console.log(this.props.user_id, username, password)
+console.log("Logging in", username, password)
     loginUser({ username, password })
   }
 
   render() {
 
-    // if (this.props.user_id) {
-    //   return <Redirect to="/home" />
-    // }
-
+   
     
     
     return (

@@ -19,8 +19,8 @@ class Viewer extends Component {
 
   render() {
     return (
-      <div class = "ImageViewer">
-      <h1 class = "WelcomeText">Welcome Text H1 child of ImageViewerDiv</h1>
+      <div className = "ImageViewer">
+      <h1 className = "WelcomeText">Welcome Text H1 child of ImageViewerDiv</h1>
       <div className = "ScrollBox">
       <h1> This should be the image viewer</h1>
       

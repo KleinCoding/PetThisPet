@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 require("./style.css");
 
 class Rating2 extends Component {
@@ -29,7 +29,8 @@ class Rating2 extends Component {
       this.setState({ rating: index + 1, editable: false });
     else this.setState({ rating: index + 1 });
 
-    if (this.props.callback) this.props.callback(index + 1);
+    if (this.props.callback) this.props.callback(index + 1)
+    
   }
   calculateWidth(i) {
     // Calculate width of the filling based on the value given

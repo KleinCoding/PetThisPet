@@ -69,7 +69,9 @@ class PostCard extends Component {
 
 handleVote(rating, post_id){
 console.log("PostCard Callback adding Vote: post_id, rating", post_id, rating)
-addRating(post_id, rating)
+addRating(post_id, rating);
+
+
 }
 
   componentDidMount(){

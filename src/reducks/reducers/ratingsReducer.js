@@ -28,7 +28,7 @@ export function addRating(post_id, rating) {
 export function editRating(post_id, updated_rating) {
   return {
     type: EDIT_RATING,
-    payload: Axios.put(`/api/ratings/${post_id}`, updated_rating)
+    payload: Axios.put(`/api/ratings/${post_id}`, {updated_rating})
   }
 }
 

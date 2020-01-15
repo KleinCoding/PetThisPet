@@ -39,7 +39,7 @@ async function allRatings(req, res) {
     const db = req.app.get("db");
   
     const ratingsUser = await db.ratings.getAllRatingsForUser(user_id)
-  console.log(user_id,"Ratings Controller allRatingsByUserId")
+  console.log(user_id,"<- User ID. Firing in Ratings Controller -> allRatingsByUserId")
     res.status(200).json(ratingsUser);
   }
   

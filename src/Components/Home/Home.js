@@ -4,7 +4,6 @@ import { getAllPosts } from "../../reducks/reducers/postsReducer";
 import { getAllRatings } from "../../reducks/reducers/ratingsReducer";
 import { getAllRatingsByUserId } from "../../reducks/reducers/ratingsReducer";
 import { getSession } from "../../reducks/reducers/authReducer";
-// import { getCurrentPost } from "../../reducks/reducers/postsReducer";
 import PostCard from "../PostCard/PostCard";
 import Axios from "axios";
 import "../../App.css";
@@ -29,6 +28,9 @@ class Home extends Component {
   
   }
 
+// componentDidUpdate(){
+//   this.props.getAllRatingsByUserId(this.props.user_id);
+// }
  
 
   randomize() {
