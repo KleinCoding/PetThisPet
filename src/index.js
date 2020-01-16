@@ -6,11 +6,12 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './reducks/store';
 import * as serviceWorker from './serviceWorker';
+import App2 from './App2'
 
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
-      <App />
+      <App2 />
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
