@@ -17,9 +17,9 @@ import { useDispatch } from "react-redux";
 function App2() {
   return (
     <div className="App">
-     
+{/*      
       <NavBar />
-       <br/>
+       <br/> */}
        <ParticleBox />
        
        {routes}

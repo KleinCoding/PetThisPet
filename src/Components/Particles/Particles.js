@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 import axios from 'axios'
 import ReactDOM from 'react-dom';
 import { useSpring, animated } from 'react-spring';
@@ -6,45 +6,121 @@ import ReactParticles from 'react-particles-js';
 import particlesConfig from './particles-config.js';
 import './styles.scss';
 import PostCard from '../PostCard/PostCardStateless'
+import Ellipsis from "../Loading/Loading"
+import { ReactQueryConfigProvider } from "react-query";
+const queryConfig = {
+  suspense: true
+};
+
+
 
 
 
 
 export default function ParticleBox() {
-const [posts_array, setPostsArray] = useState([]);
+
+
+const [data, setData] = useState({});
+const [variables, setVariables] = useState({a: 3, b: 4, c: 5});
+const [cards, setCards] = useState({card0:0, card1:1, card2:2})
+const [url, setUrl] = useState(
+  '/api/posts',
+);
+
+const [isLoading, setIsLoading] = useState(true);
+
 useEffect(() => {
-    axios
-      .get("/api/posts")
-      .then(result => setPostsArray(result.data));
-  }, []);
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    const res = await axios(url);
+
+    setData(res.data);
+    setIsLoading(false);
+  };
+  fetchData();
+}, [url]);
+ 
 
 
 
-
-  return (
-    <div className="main">
+return (
+ 
+  <div className="main">
+    <main> 
       <Particles>
-        <Hero>
-          <div className="container">
-            {/* <Info /> */}
-            <div className="row">
-              {/* {cards.map((card, i) => ( */}
-                <div className="column">
-                  <Card>
-                      <PostCard posts_array={posts_array}/>
-                    {/* <div className="card-title">{card.title}</div>
-                    <div className="card-body">{card.description}</div> */}
-                    {/* <Image ratio={card.imageRatio} src={card.image} /> */}
-                  </Card>
-                </div>
-              ))}
-            </div>
+      <Hero>
+        <div className="container">
+          {/* <Info /> */}
+          <div className="row">
+            {usePostProps({variables})}
+         
+            ))}
           </div>
-        </Hero>
-      </Particles>
-    </div>
-  );
-}
+        </div>
+      </Hero>
+    </Particles>
+    </main>
+  </div>
+);
+
+ 
+function useRandomize() {
+  if (variables.a !== cards.card0 && variables.b!== cards.card1 && variables.c!== cards.card2 ){
+    setVariables({a: Math.floor(Math.random() * data.length), b: Math.floor(Math.random() * data.length), c: Math.floor(Math.random() * data.length)});
+        }
+  // return ({a}, {b}, {c})
+  }
+
+
+
+
+  function usePostProps() {
+    return (
+      
+      <div className="column">
+        <Card>
+          <PostCard i={variables.a} />
+           <button onClick = {useRandomize}>Clicketh Me!</button>
+          {/* <div className="card-title">{card.title}</div>
+            <div className="card-body">{card.description}</div> 
+            <Image ratio={card.imageRatio} src={card.image} /> */}
+        </Card>
+        <Card>
+          <PostCard i={variables.b}
+          />
+       
+          
+         
+          {/* <div className="card-title">{card.title}</div>
+            <div className="card-body">{card.description}</div> 
+            <Image ratio={card.imageRatio} src={card.image} /> */}
+        </Card>
+        <Card>
+          <PostCard i={variables.c}
+
+          />
+          {/* <div className="card-title">{card.title}</div>
+            <div className="card-body">{card.description}</div> 
+            <Image ratio={card.imageRatio} src={card.image} /> */}
+        </Card>
+      </div>
+    );
+
+  }}
+
+// function useRandomize() {
+//     const [a, setA] = useState(1)
+//     const [b, setB] = useState(2)
+//     const [c, setC] = useState(3)
+//     setA(Math.floor(Math.random() * data.length)); setB(Math.floor(Math.random() * data.length)); setC(Math.floor(Math.random() * data.length));
+//     if (a !== card0 && b!== card1 && c!== card2 ){
+//      setCard0(a); setCard1(b); setCard2(c);
+//     }
+//     return(card0, card1, card2)
+  
+//   }
+
 
 function Card({ children }) {
   // We add this ref to card element and use in onMouseMove event ...

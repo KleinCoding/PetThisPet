@@ -1,6 +1,9 @@
+
+
 .App {
+  height: 100%;
   text-align: center;
-  border: red dashed
+  /* border: red dashed */
 }
 
 li {
@@ -21,12 +24,11 @@ li {
   widows: 100%;
   height: auto;
   text-align: center;
-  /* justify-content: space-around; */
 }
 
 .PostCard{
   border: dashed purple;
-  width: 50%;
+  /* width: 50%; */
   display: inline-block;
   justify-content: center;
   
@@ -38,7 +40,6 @@ li {
   border: orange dashed;
   align-self: center;
   width: 15vw;
-  /* display: inherit; */
   display: inline-block
 }
 
@@ -65,6 +66,8 @@ li {
   width: 100%;
   height: auto !important;
 }
+
+
 @media (max-width: 950px) {
  
   .postcardimg {

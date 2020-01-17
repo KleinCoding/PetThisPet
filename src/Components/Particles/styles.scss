@@ -25,7 +25,9 @@
     height: 100%;
   }
   
+ 
   .main {
+    height: 100%;
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
@@ -78,6 +80,8 @@
   }
   
   .container {
+    display: inline-block;
+    justify-self: center;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -86,9 +90,11 @@
   .row {
     display: flex;
     flex-wrap: wrap;
+    text-align: ce;
   }
   
   .column {
+    text-align: center;
     display: flex;
     flex: 1 1 auto;
     padding: 10px;
@@ -100,6 +106,7 @@
   
   .card {
     display: flex;
+    margin: 0 auto;
     flex-direction: column;
     padding: 40px;
     background-color: #fff;
@@ -123,6 +130,9 @@
     }
   }
   
+  .CardHolder{
+    display: inline-block;
+  }
   .image-container {
     margin-top: auto;
     padding-top: 27px;

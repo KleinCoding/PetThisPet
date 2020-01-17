@@ -14,7 +14,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
        <br/>
       <br/>
       <div><h1>This is the App.js</h1></div>
