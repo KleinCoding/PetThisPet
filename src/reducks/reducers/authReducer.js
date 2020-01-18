@@ -2,8 +2,7 @@ import Axios from 'axios';
 
 const initialState = {
   user_id: null,
-  username: "",
-  password: "",
+  username: "none",
   loading: false
 }
 
@@ -91,7 +90,6 @@ export default function reducer(state = initialState, action) {
       return {
         user_id: null,
         username: "",
-        password: "",
         loading: false
       }
     }

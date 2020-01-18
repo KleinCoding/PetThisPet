@@ -7,11 +7,13 @@ import { Provider } from 'react-redux';
 import store from './reducks/store';
 import * as serviceWorker from './serviceWorker';
 import App2 from './App2'
+import routes from './routes'
 
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
-      <App2 />
+      {/* <App2 /> */}
+      {routes}
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
@@ -20,3 +22,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+

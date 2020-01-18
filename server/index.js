@@ -32,7 +32,7 @@ massive(CONNECTION_STRING).then(db => {
 // De-structured controllers
 const { user, registerUser, loginUser, logoutUser } = ac;
 const { allRatings, addRating, editRating, allRatingsByUserId} = rc
-const { allPosts, addPost, editPost, deletePost, allPostsByCategoryName, postsById } = pc;
+const { allPosts, addPost, editPost, deletePost, allPostsByCategoryName, postsById, getRandomPosts } = pc;
 // Auth Endpoints
 app.get("/auth/user", user); //Works
 app.post("/auth/register", registerUser); //Works, catches duplicates
@@ -42,6 +42,7 @@ app.get("/auth/logout", logoutUser); //Works
 // Posts Endpoints
 app.get("/api/posts",  allPosts); // Works -- auth.usersOnly,
 app.get("/api/post/:post_id",  postsById) //Works
+app.get("/api/randposts/:amount",  getRandomPosts) //Works
 app.get("/api/posts/:category_name", allPostsByCategoryName) //Works
 app.post("/api/posts",  addPost); //Works 
 app.put("/api/posts/:post_id",  editPost); //Works, allows edit img url and pet name

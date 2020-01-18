@@ -1,0 +1,3 @@
+SELECT * FROM posts
+ORDER BY RANDOM()
+LIMIT $1

@@ -61,11 +61,21 @@ async function allPostsByCategoryName(req, res) {
   res.status(200).json(posts);
 }
 
+async function getRandomPosts(req, res) {
+  const amount= req.params.amount;
+  const db = req.app.get("db");
+
+  const randposts = await db.posts.getRandomPosts(amount)
+console.log("postController, getting random posts amount:", amount)
+  res.status(200).json(randposts);
+}
+
 module.exports = {
   allPosts,
   addPost,
   editPost,
   deletePost,
   allPostsByCategoryName,
-  postsById
+  postsById,
+  getRandomPosts
 }

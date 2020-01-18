@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './Components/Navbar/NavBar'
+// import NavBar from './Components/Navbar/NavBar'
 // import GuestLanding from './Components/GuestLanding/GuestLanding'
 // import Home from './Components/Home/Home'
 // import ScrollContainer from './Components/ScrollContainer/ScrollContainer'

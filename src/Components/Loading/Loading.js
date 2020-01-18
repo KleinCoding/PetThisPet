@@ -8,6 +8,7 @@ export default function Ellipsis({ color, size, className, style }) {
     return (
         <div className={`lds-ellipsis ${className}`} style={{ ...style, width: size, height: size }}>
             {circles}
+           
         </div>
     )
 }

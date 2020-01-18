@@ -3,7 +3,8 @@ import Axios from "axios";
 const initialState = {
   posts: [],
   loading: false,
-  currentPost_id: 0
+  currentPost_id: 0,
+  randPosts: []
 }
 
 const GET_ALL_POSTS = "GET_ALL_POSTS";
@@ -12,6 +13,7 @@ const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_ALL_POSTS_BY_CATEGORY_NAME = "GET_ALL_POSTS_BY_CATEGORY_NAME";
+const GET_RANDOM_POSTS = "GET_RANDOM_POSTS"
 
 export function getAllPosts() {
   return {
@@ -53,6 +55,13 @@ export function getAllPostsByCategoryName(category_name) {
   }
 }
 
+export function getRandomPosts(amount) {
+  return {
+    type: GET_RANDOM_POSTS,
+    payload: Axios.get(`/api/posts/${amount}`)
+  }
+}
+
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
@@ -67,6 +76,19 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         posts: payload.data
+      }
+    }
+    case `${GET_RANDOM_POSTS}_PENDING`: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case `${GET_RANDOM_POSTS}_FULFILLED`: {
+      return {
+        ...state,
+        loading:false,
+        randPosts: payload.data
       }
     }
     case `${GET_CURRENT_POST}_PENDING`: {

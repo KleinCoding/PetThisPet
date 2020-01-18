@@ -3,13 +3,25 @@ import Axios from "axios";
 const initialState = {
   ratings: [],
   ratingsUser: [],
-  loading: false
+  loading: false,
+  wasClicked: 0
 }
 
 const GET_ALL_RATINGS = "GET_ALL_RATINGS";
 const ADD_RATING = "ADD_RATING";
 const EDIT_RATING = "EDIT_RATING";
 const GET_ALL_RATINGS_BY_USER_ID = "GET_ALL_RATINGS_BY_USER_ID";
+const ADD_CLICK = "ADD_CLICK"
+
+
+
+export function addClick() {
+   console.log("addClick function in ratings reducer fired")
+  return{
+    type: ADD_CLICK
+  }
+ 
+}
 
 export function getAllRatings() {
   return {
@@ -44,6 +56,18 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+
+
+
+    
+    case `${ADD_CLICK}`: {
+      console.log("addClick fulfilled in ratings reducer fired")
+      return {
+        ...state,
+        wasClicked: state.wasClicked +1
+      }
+    }
+
     case `${GET_ALL_RATINGS}_PENDING`: {
       return {
         ...state,

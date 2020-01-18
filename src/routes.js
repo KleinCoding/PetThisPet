@@ -4,14 +4,11 @@ import GuestLanding from './Components/GuestLanding/GuestLanding';
 import Home from './Components/Home/Home';
 import ScrollContainer from './Components/ScrollContainer/ScrollContainer'
 import ParticleBox from './Components/Particles/Particles'
-
-// import AddPost from './Components/AddPost/AddPost';
-// import UserProfile from './Components/UserProfile/UserProfile';
-import App from './App'
+import App2 from './App2'
 
 export default (
   <Switch>
-    <Route component={App} exact path="/" />
+    <Route component={App2} exact path="/" />
     <Route component={Home} exact path="/Home" />
     <Route component={GuestLanding} exact path ="/Landing" />
     <Route component={ScrollContainer} exact path ="/Container" />

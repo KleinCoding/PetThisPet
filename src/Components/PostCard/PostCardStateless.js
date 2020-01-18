@@ -46,10 +46,7 @@ const queryConfig = {
       ) : ( 
       // <div className="column">
       <div className="PostCard">
-        {console.log(props.i)}
-        {console.log(data[props.i])}
-        {0}
-        
+   
         <h4>This is the PostCard</h4>
            
         <ul>

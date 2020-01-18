@@ -6,12 +6,6 @@ import ReactParticles from 'react-particles-js';
 import particlesConfig from './particles-config.js';
 import './styles.scss';
 import PostCard from '../PostCard/PostCardStateless'
-import Ellipsis from "../Loading/Loading"
-import { ReactQueryConfigProvider } from "react-query";
-const queryConfig = {
-  suspense: true
-};
-
 
 
 
@@ -109,17 +103,6 @@ function useRandomize() {
 
   }}
 
-// function useRandomize() {
-//     const [a, setA] = useState(1)
-//     const [b, setB] = useState(2)
-//     const [c, setC] = useState(3)
-//     setA(Math.floor(Math.random() * data.length)); setB(Math.floor(Math.random() * data.length)); setC(Math.floor(Math.random() * data.length));
-//     if (a !== card0 && b!== card1 && c!== card2 ){
-//      setCard0(a); setCard1(b); setCard2(c);
-//     }
-//     return(card0, card1, card2)
-  
-//   }
 
 
 function Card({ children }) {
@@ -274,5 +257,5 @@ const cards = [
   }
 ];
 
-const rootElement = document.getElementById('root');
-ReactDOM.render(<ParticleBox />, rootElement);
+// const rootElement = document.getElementById('root');
+// ReactDOM.render(<ParticleBox />, rootElement);
