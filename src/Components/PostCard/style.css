@@ -29,3 +29,14 @@
 .fillSquare {
 	z-index: 2;
 }
+
+.postCard {
+	size: inherit;
+	position: absolute;
+}
+
+.postcardimage img {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+}

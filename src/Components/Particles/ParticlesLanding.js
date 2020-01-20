@@ -3,26 +3,17 @@ import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
 import "./styles.scss";
-import PostCard from "../PostCard/PostCardStateless";
-import {useSelector} from 'react-redux'
-import AddPostOld from '../AddPost/AddPostOld'
-
-export default function ParticleBox() {
-  const [variables, setVariables] = useState({ a: 3, b: 4, c: 5 });
-
-//Summons all redux state into Particles variables listed
-const isLoading = useSelector(state => state.postsReducer.loading)
-
-const posts = useSelector(state => state.postsReducer.posts)
-
-
+import Login from "../Login/Login"
+import Register from "../Register/Register"
+export default function ParticlesLanding() {
+ 
   return (
     <div className="main">
       <main>
         <Particles>
           <Hero>
             <div className="container">
-              <div className="row">{usePostProps({ variables })}</div>
+              <div className="row">{usePostProps()}</div>
             </div>
           </Hero>
         </Particles>
@@ -30,40 +21,23 @@ const posts = useSelector(state => state.postsReducer.posts)
     </div>
   );
 
-  function useRandomize() {
-   
-      setVariables({
-        a: Math.floor(Math.random() * posts.length),
-        b: Math.floor(Math.random() * posts.length),
-        c: Math.floor(Math.random() * posts.length)
-      });
-  }
   
   function usePostProps() {
     return (
       <div className="column">
         <Hero>
           <Card>
-            <PostCard i={variables.a} posts ={posts}/>
-            <button onClick={useRandomize}>Clicketh Me!</button>
-            {/* <div className="card-title">{card.title}</div>
-            <div className="card-body">{card.description}</div> 
-            <Image ratio={card.imageRatio} src={card.image} /> */}
-          </Card>
-        </Hero>
-        <Hero>
-          <Card> 
-            <PostCard i={variables.b} posts ={posts}/>
-
-            {/* <div className="card-title">{card.title}</div>
-            <div className="card-body">{card.description}</div> 
-            <Image ratio={card.imageRatio} src={card.image} /> */}
+            <Login/>
           </Card>
         </Hero>
         <Hero>
           <Card>
-            {/* <PostCard i={variables.c} posts ={posts} />*/}
-            <AddPostOld />
+            
+          </Card>
+        </Hero>
+        <Hero>
+          <Card>
+           <Register/>
           </Card>
         </Hero>
       </div>
@@ -141,7 +115,7 @@ function Card({ children }) {
   );
 }
 
-function Particles({ children, props }) {
+function Particles({ children }) {
   return (
     <div style={{ position: "relative" }}>
       <ReactParticles
@@ -222,6 +196,3 @@ const cards = [
     imageRatio: 730 / 1030
   }
 ];
-
-// const rootElement = document.getElementById('root');
-// ReactDOM.render(<ParticleBox />, rootElement);

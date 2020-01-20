@@ -65,7 +65,7 @@
     align-items: stretch;
     justify-content: space-between;
   
-    background: linear-gradient(180deg, #2a3267, #1e282f 100%);
+    // background: linear-gradient(180deg, #2a3267, #1e282f 100%);
   }
   
   .hero-body {
@@ -105,7 +105,8 @@
   }
   
   .card {
-    display: flex;
+    // display: flex;
+    size: initial;
     margin: 0 auto;
     flex-direction: column;
     padding: 40px;

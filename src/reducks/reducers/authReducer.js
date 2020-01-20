@@ -1,9 +1,10 @@
 import Axios from 'axios';
 
 const initialState = {
-  user_id: null,
-  username: "none",
-  loading: false
+  currentUser_id: null,
+  currentUsername: null,
+  loading: false,
+  loggedIn: false
 }
 
 const GET_SESSION = "GET_SESSION";
@@ -53,8 +54,8 @@ export default function reducer(state = initialState, action) {
     case `${GET_SESSION}_FULFILLED`: {
       return {
         ...state,
-        user_id: payload.data.user_id,
-        username: payload.data.username,
+        currentUser_id: payload.data.user_id,
+        currentUsername: payload.data.username,
         loading: false
       }
     }
@@ -81,9 +82,10 @@ export default function reducer(state = initialState, action) {
     case `${LOGIN_USER}_FULFILLED`: {
       return {
         ...state,
-        user_id: payload.data.user_id,
-        username: payload.data.user,
-        loading: false
+        currentUser_id: payload.data.user_id,
+        currentUsername: payload.data.user,
+        loading: false,
+        loggedIn: true
       }
     }
     case LOGOUT_USER: {

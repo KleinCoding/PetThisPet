@@ -56,9 +56,6 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-
-
-
     
     case `${ADD_CLICK}`: {
       console.log("addClick fulfilled in ratings reducer fired")

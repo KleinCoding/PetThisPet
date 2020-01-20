@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './reducks/store';
 import * as serviceWorker from './serviceWorker';
-import App2 from './App2'
 import routes from './routes'
 
 ReactDOM.render(

@@ -75,6 +75,7 @@ export default function reducer(state = initialState, action) {
     case `${GET_ALL_POSTS}_FULFILLED`: {
       return {
         ...state,
+        loading: false,
         posts: payload.data
       }
     }
@@ -100,6 +101,7 @@ export default function reducer(state = initialState, action) {
     case `${GET_CURRENT_POST}_FULFILLED`: {
       return {
         ...state,
+        loading: false,
         currentPost_id: payload.data
       }
     }
@@ -112,6 +114,7 @@ export default function reducer(state = initialState, action) {
     case `${ADD_POST}_FULFILLED`: {
       return {
         ...state,
+        loading: false,
         posts: payload.data
       }
     }
@@ -137,6 +140,7 @@ export default function reducer(state = initialState, action) {
     case `${DELETE_POST}_FULFILLED`: {
       return {
         ...state,
+        loading: false,
         posts: payload.data
       }
     }
