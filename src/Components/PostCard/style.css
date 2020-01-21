@@ -35,8 +35,17 @@
 	position: absolute;
 }
 
-.postcardimage img {
-	position: absolute;
-	width: 50%;
-	height: 50%;
-}
+.postcardimg {
+	height: 300px;
+	/* width: 50%; */
+	/* width: auto !important; */
+	width: 400px
+  }
+  
+  @media screen and (max-width: 600px) {
+   
+	.postcardimg {
+		display: block;
+		transition: width 50%, height 50%;
+	}
+  }

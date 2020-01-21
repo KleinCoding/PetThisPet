@@ -1,0 +1,52 @@
+// .stars-container {
+// 	width: 100%;
+// }
+
+// .divStar {
+// 	width: 20%;
+// 	padding-bottom: 20%;
+// 	height: 0;
+// 	float: left;
+// 	position: relative;
+// }
+
+// .divStar img {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// 	z-index: 3;
+// }
+
+// .fillSquare, .fillInitialBG {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// 	height: 100%;
+// }
+
+// .fillSquare {
+// 	z-index: 2;
+// }
+
+.postCard {
+	position: relative;
+	height: 50%;
+	width: 50%;
+}
+
+.postcardimg {
+	height: 300px;
+	/* width: 50%; */
+	/* width: auto !important; */
+	width: 400px;
+	@media screen and (max-width: 600px) {
+		height: 150px;
+		width: 250px;
+	  }
+
+  }
+  
+
+  

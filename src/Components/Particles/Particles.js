@@ -2,10 +2,12 @@ import React, { Fragment, useState, useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
-import "./styles.scss";
+import "./stylesDisplay.scss";
 import PostCard from "../PostCard/PostCardStateless";
 import {useSelector} from 'react-redux'
 import AddPostOld from '../AddPost/AddPostOld'
+// import NavBar from './Components/Navbar/NavBar'
+
 
 export default function ParticleBox() {
   const [variables, setVariables] = useState({ a: 3, b: 4, c: 5 });
@@ -25,8 +27,11 @@ const posts = useSelector(state => state.postsReducer.posts)
               <div className="row">{usePostProps({ variables })}</div>
             </div>
           </Hero>
+          
         </Particles>
+       
       </main>
+
     </div>
   );
 
@@ -42,30 +47,17 @@ const posts = useSelector(state => state.postsReducer.posts)
   function usePostProps() {
     return (
       <div className="column">
-        <Hero>
+       
           <Card>
+          <button onClick={useRandomize}>Clicketh Me!</button>
             <PostCard i={variables.a} posts ={posts}/>
-            <button onClick={useRandomize}>Clicketh Me!</button>
-            {/* <div className="card-title">{card.title}</div>
-            <div className="card-body">{card.description}</div> 
-            <Image ratio={card.imageRatio} src={card.image} /> */}
+           
           </Card>
-        </Hero>
-        <Hero>
-          <Card> 
-            <PostCard i={variables.b} posts ={posts}/>
-
-            {/* <div className="card-title">{card.title}</div>
-            <div className="card-body">{card.description}</div> 
-            <Image ratio={card.imageRatio} src={card.image} /> */}
-          </Card>
-        </Hero>
-        <Hero>
+    <Hero2 />
           <Card>
-            {/* <PostCard i={variables.c} posts ={posts} />*/}
-            <AddPostOld />
+          <img className="postcardimg" src={posts[variables.a].img_url} alt="pet"></img>
           </Card>
-        </Hero>
+
       </div>
     );
   }
@@ -143,7 +135,7 @@ function Card({ children }) {
 
 function Particles({ children, props }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div className = "actualParticles" style={{ position: "relative" }}>
       <ReactParticles
         params={particlesConfig}
         style={{
@@ -168,6 +160,13 @@ function Hero({ children }) {
   );
 }
 
+function Hero2({ children }) {
+  return (
+    <div className="hero2">
+      <div className="hero-body2">{children}</div>
+    </div>
+  );
+}
 function Image({ ratio, src }) {
   return (
     <div className="image-container">

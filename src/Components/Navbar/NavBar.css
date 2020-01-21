@@ -1,16 +1,15 @@
 
 
 
-header {
+footer {
     display: flex ;
     justify-content: space-around;
-    height: 60px;
+    height: 100px;
     border: dashed red;
     width: 100vw;
-    position: fixed;
-    /* margin-left: -45vw; */
     border: dashed green;
-    background-color: rgb(33,37, 41)
+    background-color: rgb(33,37, 41);
+    z-index: 500;
 
    
 }

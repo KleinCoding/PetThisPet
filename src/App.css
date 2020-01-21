@@ -61,17 +61,3 @@ li {
   grid-area: 1 / 2 / 2 / 5;
 }
 
-.postcardimg {
-  max-width: 100%;
-  width: 100%;
-  height: auto !important;
-}
-
-
-@media (max-width: 950px) {
- 
-  .postcardimg {
-      display: block;
-      transition: width 50rem, height 50rem;
-  }
-}

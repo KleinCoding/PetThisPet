@@ -2,9 +2,11 @@ import React, { Fragment, useState, useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
-import "./styles.scss";
+import "./stylesLanding.scss";
 import Login from "../Login/Login"
 import Register from "../Register/Register"
+
+
 export default function ParticlesLanding() {
  
   return (
@@ -14,9 +16,9 @@ export default function ParticlesLanding() {
           <Hero>
             <div className="container">
               <div className="row">{usePostProps()}</div>
-            </div>
-          </Hero>
-        </Particles>
+            </div> 
+          </Hero> 
+        </Particles> 
       </main>
     </div>
   );
@@ -25,21 +27,23 @@ export default function ParticlesLanding() {
   function usePostProps() {
     return (
       <div className="column">
-        <Hero>
+      
           <Card>
             <Login/>
           </Card>
-        </Hero>
-        <Hero>
-          <Card>
-            
-          </Card>
-        </Hero>
-        <Hero>
+
+        <Hero2 />
+
+          {/* <Card>
+          </Card> */}
+
+          <Hero2 />
+
           <Card>
            <Register/>
           </Card>
-        </Hero>
+
+          <Hero2 />
       </div>
     );
   }
@@ -117,7 +121,7 @@ function Card({ children }) {
 
 function Particles({ children }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div className = "actualParticles" style={{ position: "relative" }}>
       <ReactParticles
         params={particlesConfig}
         style={{
@@ -131,6 +135,7 @@ function Particles({ children }) {
       />
       {children && <div style={{ position: "relative" }}>{children}</div>}
     </div>
+    // line 132 and 120 divs - style={{ position: "relative" }}
   );
 }
 
@@ -142,6 +147,13 @@ function Hero({ children }) {
   );
 }
 
+function Hero2({ children }) {
+  return (
+    <div className="hero2">
+      <div className="hero-body2">{children}</div>
+    </div>
+  );
+}
 function Image({ ratio, src }) {
   return (
     <div className="image-container">
