@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import './reset.css'
 import "./App.css";
 import Particles from "./Components/Particles/Particles";
 import ParticlesLanding from "./Components/Particles/ParticlesLanding";
@@ -8,7 +9,7 @@ import {
   getAllRatingsByUserId
 } from "./reducks/reducers/ratingsReducer";
 import { getAllPosts } from "./reducks/reducers/postsReducer";
-// import NavBar from './Components/Navbar/NavBar'
+import NavBar from './Components/Navbar/NavBar'
 import StickyFooter from 'react-sticky-footer'
 
 function App2(props) {
@@ -39,7 +40,9 @@ function App2(props) {
   );
   console.log(loggedIn);
   return (
-    <div className="App">
+   
+    <div className="App"> 
+    <NavBar />
       {loggedIn ? (
         <div>
           <Particles
@@ -59,7 +62,6 @@ function App2(props) {
           />
         </div>
       )}
-
     </div>
   )
 

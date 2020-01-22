@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, } from "react";
+import React, {Fragment } from "react";
 import "../../App.css";
 import Ellipsis from "../Loading/Loading"
 import { ReactQueryConfigProvider } from "react-query";
@@ -24,16 +24,13 @@ const dispatch = useDispatch();
       (<div><Ellipsis />
       </div>
       ) : ( 
-  <div className="column">
+  
   <div className="postCard">
-        
-  <ul>
-  <li>owner username: {props.posts[props.i].username}</li>
-  <li>category: {props.posts[props.i].category_name}</li>
-  <li>pet name: {props.posts[props.i].pet_name}</li>
-  </ul>
+        <h1>Give some pets to {props.posts[props.i].pet_name}!</h1>
+        <h2>{props.posts[props.i].pet_name}'s Human goes by {props.posts[props.i].username} </h2>
+        <h3>{props.posts[props.i].pet_name} has been petted X times</h3>
   </div>
-  // </div>
+  
           )}
     </React.Suspense>
     </ReactQueryConfigProvider>

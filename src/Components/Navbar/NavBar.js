@@ -22,13 +22,13 @@ export default class Header extends React.Component {
         return (
             <HashRouter>
             <header>
+                
                 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,400i,900|Roboto+Slab&display=swap" rel="stylesheet"></link>
-                <h2 className = "site_name">Rate That Pet</h2>
+                <h2 className = "site_name">Pet That Pet!!</h2>
                 <ul id='site-nav'>
-                    <li className='menu-text'><Link to='/Home'>Home</Link></li>
-                    <li className='menu-text'><Link to='/Landing'>Landing</Link></li>
-                    <li className='menu-text'><Link to='/'>App</Link></li>
-                    <li className='menu-text'><Link to='/Container'>Scroll Container</Link></li>
+                    <li className='menu-text'><Link to='/Home'>Login</Link></li>
+                    <li className='menu-text'><Link to='/Landing'>Profile</Link></li>
+                    <li className='menu-text'><Link to='/'>Pets</Link></li>
                     <li>
                         <img className ="MenuIcon"
                             onClick={this.handleClick}

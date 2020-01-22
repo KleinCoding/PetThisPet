@@ -1,12 +1,16 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, Fragment} from "react";
 import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
 import "./stylesDisplay.scss";
 import PostCard from "../PostCard/PostCardStateless";
 import {useSelector} from 'react-redux'
-import AddPostOld from '../AddPost/AddPostOld'
-// import NavBar from './Components/Navbar/NavBar'
+import Ellipsis from "../Loading/Loading"
+import { ReactQueryConfigProvider } from "react-query";
+
+const queryConfig = {
+  suspense: true
+};
 
 
 export default function ParticleBox() {
@@ -49,13 +53,30 @@ const posts = useSelector(state => state.postsReducer.posts)
       <div className="column">
        
           <Card>
+          <div className="postCard">
+        <h1>Give some pets to {posts[variables.a].pet_name}!</h1>
+        <h2>{posts[variables.a].pet_name}'s Human goes by {posts[variables.a].username} </h2>
+        <h3>{posts[variables.a].pet_name} has been petted X times</h3>
+  </div>
           <button onClick={useRandomize}>Clicketh Me!</button>
-            <PostCard i={variables.a} posts ={posts}/>
+            {/* <PostCard i={variables.a} posts ={posts}/> */}
            
           </Card>
     <Hero2 />
           <Card>
-          <img className="postcardimg" src={posts[variables.a].img_url} alt="pet"></img>
+          <Fragment>
+    <ReactQueryConfigProvider config={queryConfig}>
+    <React.Suspense fallback={<div><Ellipsis /></div>}>
+
+    {isLoading ? 
+      (<div><Ellipsis />
+      </div>
+      ) : ( 
+    <img className="postcardimg" src={posts[variables.a].img_url} alt="pet"></img>
+      )}
+    </React.Suspense>
+    </ReactQueryConfigProvider>
+    </Fragment>
           </Card>
 
       </div>

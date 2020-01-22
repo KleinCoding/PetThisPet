@@ -1,14 +1,12 @@
 
 
 
-footer {
+header {
     display: flex ;
     justify-content: space-around;
-    height: 100px;
-    border: dashed red;
+    height: 50px;
     width: 100vw;
-    border: dashed green;
-    background-color: rgb(33,37, 41);
+    background-color: rgb(95, 165, 236);
     z-index: 500;
 
    
@@ -16,8 +14,8 @@ footer {
 .site_name{
     font-family: 'Kaushan Script';
     color: rgb(254, 209, 54);
-    /* font-size: 50% */
-    /* font-style: italic; */
+    font-size: 50%;
+    font-style: italic;
     font-weight: 1;
     font-size: 1.25rem;
     padding-top: .3125rem;
@@ -52,7 +50,7 @@ footer {
 }
 .drop-down-menu, .drop-down-menu-open, .drop-down-menu-closed {
     width: 100vw;
-    background: rgb(33,37,41);
+    background:rgb(95, 165, 236);
     position: absolute;
     top: 100px;
     left: 0;
@@ -111,17 +109,18 @@ footer {
 
 @media (max-width: 950px) {
     header {
-        background-color: rgb(33,37, 41)
+        background-color: rgb(95, 165, 236)
+        
     }
-    img {
-        /* display: block; */
+    .MenuIcon {
+        display: block;
         transition: width 1s, height 1s;
     }
 
-    /* img:hover {
+    .MenuIcon:hover {
         width: 75px;
         height: 75px;
-    } */
+    }
 
     .menu-text {
         display: none;
