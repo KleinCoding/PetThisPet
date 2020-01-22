@@ -1,25 +1,34 @@
-import React, { useState, useRef, Fragment} from "react";
+import React, { useState, useRef, Fragment, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
 import "./stylesDisplay.scss";
-import PostCard from "../PostCard/PostCardStateless";
-import {useSelector} from 'react-redux'
-import Ellipsis from "../Loading/Loading"
+// import PostCard from "../PostCard/PostCardStateless";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllRatingsByUserId } from "../../reducks/reducers/ratingsReducer";
+import Ellipsis from "../Loading/Loading";
 import { ReactQueryConfigProvider } from "react-query";
 
 const queryConfig = {
   suspense: true
 };
 
-
 export default function ParticleBox() {
+  //Defines variables for Randomizer function for post display
   const [variables, setVariables] = useState({ a: 3, b: 4, c: 5 });
 
-//Summons all redux state into Particles variables listed
-const isLoading = useSelector(state => state.postsReducer.loading)
+  //Defines the dispatch function
+  const dispatch = useDispatch();
 
-const posts = useSelector(state => state.postsReducer.posts)
+  //Summons isLoading, currentUser_id, and Posts Array into listed variables
+  const isLoading = useSelector(state => state.postsReducer.loading);
+  const currentUser_id = useSelector(state => state.authReducer.currentUser_id);
+  const posts = useSelector(state => state.postsReducer.posts);
+
+  //Axios Call to get all ratings by logged in user
+  useEffect(() => {
+    const ratingsByUserId = dispatch(getAllRatingsByUserId(currentUser_id));
+  }, []);
 
 
   return (
@@ -31,54 +40,60 @@ const posts = useSelector(state => state.postsReducer.posts)
               <div className="row">{usePostProps({ variables })}</div>
             </div>
           </Hero>
-          
         </Particles>
-       
       </main>
-
     </div>
   );
 
   function useRandomize() {
-   
-      setVariables({
-        a: Math.floor(Math.random() * posts.length),
-        b: Math.floor(Math.random() * posts.length),
-        c: Math.floor(Math.random() * posts.length)
-      });
+    setVariables({
+      a: Math.floor(Math.random() * posts.length),
+      b: Math.floor(Math.random() * posts.length),
+      c: Math.floor(Math.random() * posts.length)
+    });
   }
-  
+
   function usePostProps() {
     return (
       <div className="column">
-       
-          <Card>
+        <Card>
           <div className="postCard">
-        <h1>Give some pets to {posts[variables.a].pet_name}!</h1>
-        <h2>{posts[variables.a].pet_name}'s Human goes by {posts[variables.a].username} </h2>
-        <h3>{posts[variables.a].pet_name} has been petted X times</h3>
-  </div>
+            <h1>Give some pets to {posts[variables.a].pet_name}!</h1>
+            <h2>
+              {posts[variables.a].pet_name}'s Human goes by{" "}
+              {posts[variables.a].username}{" "}
+            </h2>
+            <h3>{posts[variables.a].pet_name} has been petted X times</h3>
+          </div>
           <button onClick={useRandomize}>Clicketh Me!</button>
-            {/* <PostCard i={variables.a} posts ={posts}/> */}
-           
-          </Card>
-    <Hero2 />
-          <Card>
+          {/* <PostCard i={variables.a} posts ={posts}/> */}
+        </Card>
+        <Hero2 />
+        <Card>
           <Fragment>
-    <ReactQueryConfigProvider config={queryConfig}>
-    <React.Suspense fallback={<div><Ellipsis /></div>}>
-
-    {isLoading ? 
-      (<div><Ellipsis />
-      </div>
-      ) : ( 
-    <img className="postcardimg" src={posts[variables.a].img_url} alt="pet"></img>
-      )}
-    </React.Suspense>
-    </ReactQueryConfigProvider>
-    </Fragment>
-          </Card>
-
+            <ReactQueryConfigProvider config={queryConfig}>
+              <React.Suspense
+                fallback={
+                  <div>
+                    <Ellipsis />
+                  </div>
+                }
+              >
+                {isLoading ? (
+                  <div>
+                    <Ellipsis />
+                  </div>
+                ) : (
+                  <img
+                    className="postcardimg"
+                    src={posts[variables.a].img_url}
+                    alt="pet"
+                  ></img>
+                )}
+              </React.Suspense>
+            </ReactQueryConfigProvider>
+          </Fragment>
+        </Card>
       </div>
     );
   }
@@ -156,7 +171,7 @@ function Card({ children }) {
 
 function Particles({ children, props }) {
   return (
-    <div className = "actualParticles" style={{ position: "relative" }}>
+    <div className="actualParticles" style={{ position: "relative" }}>
       <ReactParticles
         params={particlesConfig}
         style={{
@@ -188,60 +203,60 @@ function Hero2({ children }) {
     </div>
   );
 }
-function Image({ ratio, src }) {
-  return (
-    <div className="image-container">
-      <div className="image-inner-container">
-        <div
-          className="ratio"
-          style={{
-            paddingTop: ratio * 100 + "%"
-          }}
-        >
-          <div className="ratio-inner">
-            <img src={src} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// function Image({ ratio, src }) {
+//   return (
+//     <div className="image-container">
+//       <div className="image-inner-container">
+//         <div
+//           className="ratio"
+//           style={{
+//             paddingTop: ratio * 100 + "%"
+//           }}
+//         >
+//           <div className="ratio-inner">
+//             <img src={src} />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-function Info() {
-  return (
-    <div className="info">
-      Springy cards from{" "}
-      <a target="_blank" href="https://bit.ly/382KSdo">
-        divjoy.com
-      </a>
-      <div className="notice">(best viewed at larger screen width)</div>
-    </div>
-  );
-}
+// function Info() {
+//   return (
+//     <div className="info">
+//       Springy cards from{" "}
+//       <a target="_blank" href="https://bit.ly/382KSdo">
+//         divjoy.com
+//       </a>
+//       <div className="notice">(best viewed at larger screen width)</div>
+//     </div>
+//   );
+// }
 
-const cards = [
-  {
-    title: "Build faster ⚡️",
-    description:
-      "Create a React web app in the fraction of the time using our library of themes and building blocks. We have everything from navbars and content grids to authentication flows and commenting systems. New blocks are added every week.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_collection.svg",
-    imageRatio: 784 / 1016
-  },
-  {
-    title: "Tweak anything 👩‍🎨",
-    description:
-      "Built with developers in mind. Change element structure, edit CSS, create components, add props and state. We give you access to the underlying React code so you can do what you need right in our tool.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_upload.svg",
-    imageRatio: 839 / 1133
-  },
-  {
-    title: "Export your code 🚀",
-    description:
-      "Export your project as a high-quality React codebase. We're lazer focused on helping you build and iterate quickly, but expect that you'll eventually want to export and wrap things up in your favorite code editor.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
-    imageRatio: 730 / 1030
-  }
-];
+// const cards = [
+//   {
+//     title: "Build faster ⚡️",
+//     description:
+//       "Create a React web app in the fraction of the time using our library of themes and building blocks. We have everything from navbars and content grids to authentication flows and commenting systems. New blocks are added every week.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_collection.svg",
+//     imageRatio: 784 / 1016
+//   },
+//   {
+//     title: "Tweak anything 👩‍🎨",
+//     description:
+//       "Built with developers in mind. Change element structure, edit CSS, create components, add props and state. We give you access to the underlying React code so you can do what you need right in our tool.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_upload.svg",
+//     imageRatio: 839 / 1133
+//   },
+//   {
+//     title: "Export your code 🚀",
+//     description:
+//       "Export your project as a high-quality React codebase. We're lazer focused on helping you build and iterate quickly, but expect that you'll eventually want to export and wrap things up in your favorite code editor.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
+//     imageRatio: 730 / 1030
+//   }
+// ];
 
 // const rootElement = document.getElementById('root');
 // ReactDOM.render(<ParticleBox />, rootElement);

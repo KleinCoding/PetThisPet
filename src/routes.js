@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import GuestLanding from './Components/GuestLanding/GuestLanding';
+// import GuestLanding from './Components/GuestLanding/GuestLanding';
 import Home from './Components/Home/Home';
 import ScrollContainer from './Components/ScrollContainer/ScrollContainer'
 import ParticleBox from './Components/Particles/Particles'

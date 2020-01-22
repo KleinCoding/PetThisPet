@@ -11,6 +11,17 @@ async function user(req, res) {
   }
 }
 
+async function getCurrentUser(req, res) {
+  //Pulls user from users table. This is for the post_count integer value
+  const user_id= req.params.user_id;
+  const db = req.app.get("db");
+
+  const currentUser = await db.auth.getCurrentUser(user_id)
+console.log("authController, getting user by ID", user_id)
+  res.status(200).json(currentUser);
+}
+
+
 async function registerUser(req, res) {
   const {username, password } = req.body;
   const db = req.app.get("db");
@@ -82,5 +93,6 @@ module.exports = {
   user,
   registerUser,
   loginUser,
-  logoutUser
+  logoutUser,
+  getCurrentUser
 }

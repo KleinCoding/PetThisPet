@@ -4,6 +4,14 @@ async function allPosts(req, res) {
 
   res.status(200).json(posts)
 }
+async function addPostCount(req, res) {
+  const user_id = req.session.user.user_id;
+  const db = req.app.get("db");
+
+  const postIncrement = await db.posts.addPostCount(user_id);
+  res.status(200).json(postIncrement);
+  console.log("Post Count incremented in post controller", postIncrement)
+}
 
 async function addPost(req, res) {
   const { category_name, pet_name, img_url} = req.body;
@@ -77,5 +85,6 @@ module.exports = {
   deletePost,
   allPostsByCategoryName,
   postsById,
-  getRandomPosts
+  getRandomPosts,
+  addPostCount
 }

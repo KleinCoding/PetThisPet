@@ -210,3 +210,17 @@ body {
   bottom: 0;
   left: 0;
 }
+
+.postcardimg {
+	height: 300px;
+	/* width: 50%; */
+	/* width: auto !important; */
+	width: 400px;
+	@media screen and (max-width: 600px) {
+		height: 150px;
+		width: 250px;
+	  }
+
+  }
+  
+

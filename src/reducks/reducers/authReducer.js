@@ -3,10 +3,12 @@ import Axios from 'axios';
 const initialState = {
   currentUser_id: null,
   currentUsername: null,
+  currentUser: null,
   loading: false,
   loggedIn: false
 }
 
+const GET_CURRENT_USER = "GET_CURRENT_USER"
 const GET_SESSION = "GET_SESSION";
 const REGISTER_USER = "REGISTER_USER";
 const LOGIN_USER = "LOGIN_USER";
@@ -20,6 +22,13 @@ export function getSession() {
   }
 }
 
+
+export function getCurrentUser(user_id) {
+  return{
+  type: GET_CURRENT_USER,
+  payload: Axios.get(`/auth/user/${user_id}`)
+  }
+}
 export function registerUser(newUser) {
   return {
     type: REGISTER_USER,
@@ -45,6 +54,23 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+
+    case `${GET_CURRENT_USER}_PENDING`: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case `${GET_CURRENT_USER}_FULFILLED`: {
+      return {
+        ...state,
+        loading: false,
+        currentUser: payload.data
+      }
+    }
+
+
+
     case `${GET_SESSION}_PENDING`: {
       return {
         ...state,
@@ -56,6 +82,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         currentUser_id: payload.data.user_id,
         currentUsername: payload.data.username,
+        currentUser: payload.data,
         loading: false
       }
     }
@@ -83,7 +110,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         currentUser_id: payload.data.user_id,
-        currentUsername: payload.data.user,
+        currentUsername: payload.data.username,
         loading: false,
         loggedIn: true
       }

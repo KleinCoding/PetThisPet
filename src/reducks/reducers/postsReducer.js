@@ -10,6 +10,7 @@ const initialState = {
 const GET_ALL_POSTS = "GET_ALL_POSTS";
 const GET_CURRENT_POST = "GET_CURRENT_POST"
 const ADD_POST = "ADD_POST";
+const ADD_POST_COUNT = "ADD_POST_COUNT"
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_ALL_POSTS_BY_CATEGORY_NAME = "GET_ALL_POSTS_BY_CATEGORY_NAME";
@@ -28,12 +29,21 @@ export function addPost(post) {
     payload: Axios.post("/api/posts", post)
   }
 }
+
+export function addPostCount(post_id) {
+  return {
+    type: ADD_POST_COUNT,
+    payload: Axios.post(`/api/post/${post_id}`)
+  }
+}
+
 export function getCurrentPost(post_id) {
   return{
   type: GET_CURRENT_POST,
   payload: Axios.get(`/api/post/${post_id}`)
   }
 }
+
 export function editPost(post_id, updated_post) {
   return {
     type: EDIT_POST,
@@ -116,6 +126,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: false,
         posts: payload.data
+      }
+    }
+    case `${ADD_POST_COUNT}_PENDING`: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case `${ADD_POST_COUNT}_FULFILLED`: {
+      return {
+        ...state,
+        loading: false,
       }
     }
     case `${EDIT_POST}_PENDING`: {

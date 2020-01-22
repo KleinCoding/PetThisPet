@@ -14,11 +14,7 @@ class FileUploadJosie extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     if(!this.props.user_id) {
-    //         this.props.history.push('/login')
-    //     }
-    // }
+
 
     fileOnChange = e => {
         const files = e.target.files
@@ -57,6 +53,7 @@ class FileUploadJosie extends Component {
         const settings = {
             profileImgUrl: this.state.uploadedUrl,  
         }
+        console.log(settings)
     }
 
     render() {

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useSpring, animated } from "react-spring";
 import ReactParticles from "react-particles-js";
 import particlesConfig from "./particles-config.js";
@@ -154,57 +154,57 @@ function Hero2({ children }) {
     </div>
   );
 }
-function Image({ ratio, src }) {
-  return (
-    <div className="image-container">
-      <div className="image-inner-container">
-        <div
-          className="ratio"
-          style={{
-            paddingTop: ratio * 100 + "%"
-          }}
-        >
-          <div className="ratio-inner">
-            <img src={src} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// function Image({ ratio, src }) {
+//   return (
+//     <div className="image-container">
+//       <div className="image-inner-container">
+//         <div
+//           className="ratio"
+//           style={{
+//             paddingTop: ratio * 100 + "%"
+//           }}
+//         >
+//           <div className="ratio-inner">
+//             <img src={src} />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-function Info() {
-  return (
-    <div className="info">
-      Springy cards from{" "}
-      <a target="_blank" href="https://bit.ly/382KSdo">
-        divjoy.com
-      </a>
-      <div className="notice">(best viewed at larger screen width)</div>
-    </div>
-  );
-}
+// function Info() {
+//   return (
+//     <div className="info">
+//       Springy cards from{" "}
+//       <a target="_blank" href="https://bit.ly/382KSdo">
+//         divjoy.com
+//       </a>
+//       <div className="notice">(best viewed at larger screen width)</div>
+//     </div>
+//   );
+// // }
 
-const cards = [
-  {
-    title: "Build faster ⚡️",
-    description:
-      "Create a React web app in the fraction of the time using our library of themes and building blocks. We have everything from navbars and content grids to authentication flows and commenting systems. New blocks are added every week.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_collection.svg",
-    imageRatio: 784 / 1016
-  },
-  {
-    title: "Tweak anything 👩‍🎨",
-    description:
-      "Built with developers in mind. Change element structure, edit CSS, create components, add props and state. We give you access to the underlying React code so you can do what you need right in our tool.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_upload.svg",
-    imageRatio: 839 / 1133
-  },
-  {
-    title: "Export your code 🚀",
-    description:
-      "Export your project as a high-quality React codebase. We're lazer focused on helping you build and iterate quickly, but expect that you'll eventually want to export and wrap things up in your favorite code editor.",
-    image: "https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
-    imageRatio: 730 / 1030
-  }
-];
+// const cards = [
+//   {
+//     title: "Build faster ⚡️",
+//     description:
+//       "Create a React web app in the fraction of the time using our library of themes and building blocks. We have everything from navbars and content grids to authentication flows and commenting systems. New blocks are added every week.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_collection.svg",
+//     imageRatio: 784 / 1016
+//   },
+//   {
+//     title: "Tweak anything 👩‍🎨",
+//     description:
+//       "Built with developers in mind. Change element structure, edit CSS, create components, add props and state. We give you access to the underlying React code so you can do what you need right in our tool.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_upload.svg",
+//     imageRatio: 839 / 1133
+//   },
+//   {
+//     title: "Export your code 🚀",
+//     description:
+//       "Export your project as a high-quality React codebase. We're lazer focused on helping you build and iterate quickly, but expect that you'll eventually want to export and wrap things up in your favorite code editor.",
+//     image: "https://6jlvz1j5q3.csb.app/undraw_static_assets.svg",
+//     imageRatio: 730 / 1030
+//   }
+// ];

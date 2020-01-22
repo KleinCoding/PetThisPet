@@ -8,12 +8,12 @@ import * as serviceWorker from './serviceWorker';
 import routes from './routes'
 
 
+
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
-      {/* <App2 /> */}
+      
       {routes}
-  
     </HashRouter>
   </Provider>
   , document.getElementById('root'));

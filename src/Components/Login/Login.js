@@ -1,46 +1,35 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { loginUser } from '../../reducks/reducers/authReducer';
+import React, { useState } from "react";
+import { loginUser } from "../../reducks/reducers/authReducer";
+import {  useDispatch } from "react-redux";
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: ""
-    }
-  }
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+  const handleLogin = evt => {
+    console.log("Logging in", username, password);
+    dispatch(loginUser({ username, password }));
+  };
 
-  handleLogin = () => {
-    const { loginUser } = this.props;
-    const { username, password } = this.state;
-console.log("Logging in", username, password)
-    loginUser({ username, password })
-  }
-
-  render() {
-
-   
-    
-    
-    return (
-      <div>
-        <input name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
-        <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-        <button onClick={this.handleLogin}>Login</button>
-      </div>
-    )
-  }
+  return (
+    <form onSubmit={handleLogin}>
+      <input
+        name="username"
+        placeholder="Username"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+      />
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
 }
 
-const mapStateToProps = reduxState => {
-  return {
-    user_id: reduxState.authReducer.user_id
-  }
-}
-
-export default connect(mapStateToProps, { loginUser })(Login);
+export default Login;

@@ -21,53 +21,7 @@ const sc = require('./controllers/s3Controller')
 
 
 // Destructuring private data from .env
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET } = process.env;
-
-
-// /////////////////////////////////////////////////AWS S3 SETUP FOLLOWS - NOT WORKING-
-// // configure the keys for accessing AWS
-// AWS.config.update({
-//   accessKeyId: AWS_ACCESS_KEY_ID,
-//   secretAccessKey: AWS_SECRET_ACCESS_KEY
-// });
-
-// // configure AWS to work with promises
-// AWS.config.setPromisesDependency(bluebird);
-
-// // create S3 instance
-// const s3 = new AWS.S3();
-
-// // abstracts function to upload a file returning a promise
-// const uploadFile = (buffer, name, type) => {
-//   const params = {
-//     ACL: 'public-read',
-//     Body: buffer,
-//     Bucket: S3_BUCKET,
-//     ContentType: type.mime,
-//     Key: `${name}.${type.ext}`
-//   };
-//   return s3.upload(params).promise();
-// };
-
-// // AWS S3 POST route
-// app.post('/test-upload', (request, response) => {
-//   const form = new multiparty.Form();
-//     form.parse(request, async (error, fields, files) => {
-//       if (error) throw new Error(error);
-//       try {
-//         const path = files.file[0].path;
-//         const buffer = fs.readFileSync(path);
-//         const type = fileType(buffer);
-//         const timestamp = Date.now().toString();
-//         const fileName = `userPhotos/${timestamp}-lg`;
-//         const data = await uploadFile(buffer, fileName, type);
-//         return response.status(200).send(data);
-//       } catch (error) {
-//         return response.status(400).send(error);
-//       }
-//     });
-// });
-/////////////////////////////////////////////////////////////AWS S3 SETUP ABOVE
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 
 // Middleware
@@ -95,11 +49,12 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 // De-structured controllers
-const { user, registerUser, loginUser, logoutUser } = ac;
+const { user, registerUser, loginUser, logoutUser, getCurrentUser } = ac;
 const { allRatings, addRating, editRating, allRatingsByUserId} = rc
-const { allPosts, addPost, editPost, deletePost, allPostsByCategoryName, postsById, getRandomPosts } = pc;
+const { allPosts, addPostCount, addPost, editPost, deletePost, allPostsByCategoryName, postsById, getRandomPosts } = pc;
 // Auth Endpoints
 app.get("/auth/user", user); //Works
+app.get("/auth/user/:user_id", getCurrentUser); //Works, excludes password hash
 app.post("/auth/register", registerUser); //Works, catches duplicates
 app.post("/auth/login", loginUser); // Works
 app.get("/auth/logout", logoutUser); //Works
@@ -107,6 +62,7 @@ app.get("/auth/logout", logoutUser); //Works
 // Posts Endpoints
 app.get("/api/posts",  allPosts); // Works -- auth.usersOnly,
 app.get("/api/post/:post_id",  postsById) //Works
+app.put("/api/post/:post_id", addPostCount)
 app.get("/api/randposts/:amount",  getRandomPosts) //Works
 app.get("/api/posts/:category_name", allPostsByCategoryName) //Works
 app.post("/api/posts",  addPost); //Works 
