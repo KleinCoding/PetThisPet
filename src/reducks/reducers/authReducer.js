@@ -82,7 +82,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         currentUser_id: payload.data.user_id,
         currentUsername: payload.data.username,
-        currentUser: payload.data,
+        
         loading: false
       }
     }
