@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './reset.css'
+import "./reset.css";
 import "./App.css";
 import Particles from "./Components/Particles/Particles";
 import ParticlesLanding from "./Components/Particles/ParticlesLanding";
@@ -9,12 +9,16 @@ import {
   getAllRatingsByUserId
 } from "./reducks/reducers/ratingsReducer";
 import { getAllPosts } from "./reducks/reducers/postsReducer";
-import NavBar from './Components/Navbar/NavBar'
-import StickyFooter from 'react-sticky-footer'
+import NavBar from "./Components/Navbar/NavBar";
+import StickyFooter from "react-sticky-footer";
 
 function App2(props) {
   const dispatch = useDispatch();
-
+ //Summons all redux state into App2 variables listed
+  const authState = useSelector(state => state.authReducer);
+  const postState = useSelector(state => state.postsReducer);
+  const ratingState = useSelector(state => state.ratingsReducer);
+  
   useEffect(() => {
     //Axios call to get all posts, ratings, and userRatings into redux state
     const ratingsByUserId = dispatch(
@@ -24,10 +28,7 @@ function App2(props) {
     const posts = dispatch(getAllPosts());
   }, []);
 
-  //Summons all redux state into App2 variables listed
-  const authState = useSelector(state => state.authReducer);
-  const postState = useSelector(state => state.postsReducer);
-  const ratingState = useSelector(state => state.ratingsReducer);
+ 
 
   //Summons logged in status from redux State in variable loggedIn
   const loggedIn = useSelector(state => state.authReducer.loggedIn);
@@ -40,9 +41,8 @@ function App2(props) {
   );
   console.log(loggedIn);
   return (
-   
-    <div className="App"> 
-    <NavBar />
+    <div className="App">
+      <NavBar />
       {loggedIn ? (
         <div>
           <Particles
@@ -63,11 +63,7 @@ function App2(props) {
         </div>
       )}
     </div>
-  )
-
-  
-  
- 
+  );
 }
 
 export default App2;

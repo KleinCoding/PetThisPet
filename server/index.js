@@ -17,55 +17,56 @@ const app = express();
 const ac = require("./controllers/authController")
 const pc = require("./controllers/postsController")
 const rc = require("./controllers/ratingsController")
+const sc = require('./controllers/s3Controller')
 
 
 // Destructuring private data from .env
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET } = process.env;
 
 
-/////////////////////////////////////////////////AWS S3 SETUP FOLLOWS
-// configure the keys for accessing AWS
-AWS.config.update({
-  accessKeyId: AWS_ACCESS_KEY_ID,
-  secretAccessKey: AWS_SECRET_ACCESS_KEY
-});
+// /////////////////////////////////////////////////AWS S3 SETUP FOLLOWS - NOT WORKING-
+// // configure the keys for accessing AWS
+// AWS.config.update({
+//   accessKeyId: AWS_ACCESS_KEY_ID,
+//   secretAccessKey: AWS_SECRET_ACCESS_KEY
+// });
 
-// configure AWS to work with promises
-AWS.config.setPromisesDependency(bluebird);
+// // configure AWS to work with promises
+// AWS.config.setPromisesDependency(bluebird);
 
-// create S3 instance
-const s3 = new AWS.S3();
+// // create S3 instance
+// const s3 = new AWS.S3();
 
-// abstracts function to upload a file returning a promise
-const uploadFile = (buffer, name, type) => {
-  const params = {
-    ACL: 'public-read',
-    Body: buffer,
-    Bucket: S3_BUCKET,
-    ContentType: type.mime,
-    Key: `${name}.${type.ext}`
-  };
-  return s3.upload(params).promise();
-};
+// // abstracts function to upload a file returning a promise
+// const uploadFile = (buffer, name, type) => {
+//   const params = {
+//     ACL: 'public-read',
+//     Body: buffer,
+//     Bucket: S3_BUCKET,
+//     ContentType: type.mime,
+//     Key: `${name}.${type.ext}`
+//   };
+//   return s3.upload(params).promise();
+// };
 
-// AWS S3 POST route
-app.post('/test-upload', (request, response) => {
-  const form = new multiparty.Form();
-    form.parse(request, async (error, fields, files) => {
-      if (error) throw new Error(error);
-      try {
-        const path = files.file[0].path;
-        const buffer = fs.readFileSync(path);
-        const type = fileType(buffer);
-        const timestamp = Date.now().toString();
-        const fileName = `userPhotos/${timestamp}-lg`;
-        const data = await uploadFile(buffer, fileName, type);
-        return response.status(200).send(data);
-      } catch (error) {
-        return response.status(400).send(error);
-      }
-    });
-});
+// // AWS S3 POST route
+// app.post('/test-upload', (request, response) => {
+//   const form = new multiparty.Form();
+//     form.parse(request, async (error, fields, files) => {
+//       if (error) throw new Error(error);
+//       try {
+//         const path = files.file[0].path;
+//         const buffer = fs.readFileSync(path);
+//         const type = fileType(buffer);
+//         const timestamp = Date.now().toString();
+//         const fileName = `userPhotos/${timestamp}-lg`;
+//         const data = await uploadFile(buffer, fileName, type);
+//         return response.status(200).send(data);
+//       } catch (error) {
+//         return response.status(400).send(error);
+//       }
+//     });
+// });
 /////////////////////////////////////////////////////////////AWS S3 SETUP ABOVE
 
 
@@ -117,6 +118,9 @@ app.get("/api/ratings",  allRatings);  //Works
 app.get("/api/ratings/:user_id",  allRatingsByUserId) //Works
 app.post("/api/ratings/:post_id",  addRating); //Works, but will allow user to rate multiple times
 app.put("/api/ratings/:post_id",  editRating) //Works
+
+// S3 Endpoint
+app.get('/api/media/sign-s3', sc.getSigned)
 
 app.listen(SERVER_PORT, () => {
   console.log(`LOFI RADIO STATION #: ${SERVER_PORT}`)
